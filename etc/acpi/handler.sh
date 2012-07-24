@@ -110,6 +110,8 @@ ACPI_Event ()
 
 		esac ;;
 
+        dock) _Dock ;;
+
 	wireless) shift; case $1 in
 
 		switch) _Switch_Radios ;;
@@ -206,6 +208,9 @@ Map_Event_Codes ()
                 ibm/hotkey\ LEN0068:00*500c)		ACPI_Event tablet stylus eject ;;
                 ibm/hotkey\ LEN0068:00*500b)		ACPI_Event tablet stylus dock ;;
 
+                # MINI DOCK
+                ibm/hotkey\ LEN0068:00*6040)            ACPI_Event dock ;;
+
 		# MISC BUTTONS
 		button/prog1*)				ACPI_Event misc button thinkvantage ;;
 
@@ -228,6 +233,10 @@ Map_Event_Codes ()
 
 _Lock_System () {
 	DISPLAY=:0.0 i3lock -d
+}
+
+_Dock () {
+        _Switch_Display
 }
 
 _Switch_Display() {
