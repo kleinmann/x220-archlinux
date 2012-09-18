@@ -232,7 +232,7 @@ Map_Event_Codes ()
 }
 
 _Lock_System () {
-	DISPLAY=:0.0 i3lock -d
+	DISPLAY=:0.0 sudo -u uwe i3lock -d
 }
 
 _Dock () {
@@ -361,10 +361,10 @@ _Powersave ()
 	# change powersave states
 	case $powersave_state in
 		min)
-			target_cpu_governor=powersave
+			target_cpu_governor=ondemand
 			target_brute_force=auto
-			target_wlan_power_save=on
-			dpms_seconds=60
+			target_wlan_power_save=off
+			dpms_seconds=600
 			backlight_percent=75
 			Log "POWER MODE: MIN (full powersave)"
 		;;
